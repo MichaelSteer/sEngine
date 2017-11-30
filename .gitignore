@@ -1,0 +1,13 @@
+*.obj
+*.VC.opendb
+*.sdf
+*.vcxproj.filters
+*.vcxproj.user
+*.idb
+*.pdb
+.vs/*
+Engine/Engine.log
+Engine/Engine.tlog/*
+Engine/bin/*
+UnitTesting/x64/*
+x64/*
