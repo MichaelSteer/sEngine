@@ -8,23 +8,26 @@
 	https://stackoverflow.com/questions/63166/how-to-determine-cpu-and-memory-consumption-from-inside-a-process
 */
  
-#ifdef _WIN32 || _WIN64
+#if defined(_WIN32) || defined(_WIN64)
 #include <Windows.h>
 #include <Psapi.h>
 #include "system\OS\Memory.h"
+
+Memory::Memory() {}
+
 void Memory::poll() {
 
 	MEMORYSTATUSEX memory;
 	PROCESS_MEMORY_COUNTERS_EX pmc;
 
-	GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc));
+	GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
 	memory.dwLength = sizeof(MEMORYSTATUSEX);
 	GlobalMemoryStatusEx(&memory);
 
 	// VRAM
 	TotalVirtual = memory.ullTotalPageFile;
 	UsedVirtual = memory.ullTotalPageFile - memory.ullAvailPageFile;
-	ProcessVirtual procVMemoryUsed = pmc.PrivateUsage;
+	ProcessVirtual = UsedVirtual = pmc.PrivateUsage;
 
 	// Physical Memory
 	TotalPhysical = memory.ullTotalPhys;

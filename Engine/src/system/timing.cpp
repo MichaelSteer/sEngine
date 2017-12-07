@@ -26,7 +26,6 @@ void hardSleep(unsigned long milliseconds) {
 #endif
 }
 
-
 // turn the current time into a GMT formatted string
 std::string timeString(std::string formatting) {
 	time_t t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());

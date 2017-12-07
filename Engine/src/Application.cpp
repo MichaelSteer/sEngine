@@ -37,11 +37,14 @@ bool Application::parseArgs(char argc, char** argv) {
 }
 
 // Initialize the application
-bool Application::init() {
+bool Application::init(HINSTANCE hInstance) {
 	log << "Initializing Applicaiton" << endl;
 	log << "Pushing initial state" << endl;
-
 	AppRunning = true;
+
+	hardwareManager = new HardwareManager();
+	window = new Window(hInstance, 1000, 1000, "test");
+	
 
 	std::unique_ptr<DummyState> s;
 
@@ -54,28 +57,69 @@ bool Application::init() {
 	return true;
 }
 
-
-// start the application
-bool Application::start() {
-	while (AppRunning) {
-		frameTimer.reset();
-		
-		if (incrementTimer.getElapsedTime() > 1000) {
-			incrementTimer.reset();
-			hardSleep(1);
-			log << "FPS: " 
-				<< frameTimer.getFrequency()
-				<< endl;
-			frameTimer.reset();
+bool Application::systemEvents() {
+	if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+		if (msg.message == WM_QUIT) {
+			return true;
+		}
+		else {
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
 		}
 	}
+	return false;
+}
+// start the application
+bool Application::start() {
+	while (loop()) {
+	}
 	return true;
+}
+
+bool Application::loop() {
+
+	// Timing and resource analysis
+	frameTimer.reset();
+	if (incrementTimer.getElapsedTime() > 1000) {
+		hardwareManager->poll();
+		incrementTimer.reset();
+		hardSleep(10); // REMOVE once something computational is
+					   // being done
+
+
+					   // SLEEP for est time
+					   // SLEEP FUNC ASDFASDFASDFASDFASF
+					   // RESUME
+
+		log << "FPS: "
+			<< frameTimer.getFrequency()
+			<< endl;
+
+		hardwareManager->print();
+		frameTimer.reset();
+	}
+
+	// Events
+	if (systemEvents()) {
+		return false;
+	}
+
+	// State events
+
+	// State Logic
+
+	// State render
+
+	// Post logic
+
+	return true;
+
 }
 
 // run the applicaiton
 bool Application::run() {
 	log << "Starting Application" << endl;
-	this->start();
+	start();
 	return true;
 }
 

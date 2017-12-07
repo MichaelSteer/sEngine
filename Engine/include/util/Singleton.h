@@ -13,7 +13,6 @@ class Singleton {
 public:
 	static T& getInstance(Args... args) {
 		static T instance(args...);
-		std::cout << "&T:" << &instance << std::endl;
 		return instance;
 	}
 protected:

@@ -78,7 +78,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)\bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)\</IntDir>
-    <IncludePath>$(ProjectDir)\include\;$(ProjectDir)\include\x64\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\GLEW\include\;$(ProjectDir)\include\;$(ProjectDir)\include\x64\;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)\lib\x64\;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)-$(Configuration)-$(Platform)</TargetName>
     <CodeAnalysisRuleSet>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\Rule Sets\NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -107,6 +107,13 @@
       <EnablePREfast>false</EnablePREfast>
       <AdditionalIncludeDirectories>$(ProjectDir)/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>pdh.lib;glew32s.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <CustomBuildStep>
+      <Command>echo %cd%</Command>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -139,10 +146,13 @@
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\misc\splash.cpp" />
+    <ClCompile Include="src\system\OS\CPU.cpp" />
+    <ClCompile Include="src\system\OS\HardwareManager.cpp" />
     <ClCompile Include="src\system\OS\Memory.cpp" />
     <ClCompile Include="src\system\OS\OS.cpp" />
     <ClCompile Include="src\system\timer.cpp" />
     <ClCompile Include="src\system\timing.cpp" />
+    <ClCompile Include="src\system\Window.cpp" />
     <ClCompile Include="src\util\ArgFactory.cpp" />
     <ClCompile Include="src\util\argparse.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -159,8 +169,10 @@
     <ClInclude Include="include\math\Vector.h" />
     <ClInclude Include="include\misc\splash.h" />
     <ClInclude Include="include\system\OS\CPU.h" />
+    <ClInclude Include="include\system\OS\HardwareManager.h" />
     <ClInclude Include="include\system\OS\Memory.h" />
     <ClInclude Include="include\system\OS\OS.h" />
+    <ClInclude Include="include\system\OS\winapi.h" />
     <ClInclude Include="include\system\timer.h" />
     <ClInclude Include="include\util\ArgFactory.h" />
     <ClInclude Include="include\util\ArgParse.h" />
@@ -173,6 +185,14 @@
     <ClInclude Include="include\util\Utility.h" />
     <ClInclude Include="include\system\timing.h" />
     <ClInclude Include="include\misc\wizzard.h" />
+    <ClInclude Include="include\system\window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" />
+    <None Include="data\settings.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="todo.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

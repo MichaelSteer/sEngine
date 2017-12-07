@@ -9,6 +9,8 @@
 #ifndef __STRMANIP_H__
 #define __STRMANIP_H__
 
+#define DATESTRING_LENGTH 23
+
 #include <sstream>
 #include <string>
 #include <iomanip>
@@ -40,5 +42,14 @@ std::vector<std::string> tokenize(const std::string &s, char delim=' ') {
 	}
 	return tokens;
 }
+
+std::string dupe(char item, unsigned int times) {
+	std::string out;
+	for (unsigned int i = 0; i < times; i++) {
+		out += item;
+	}
+	return out;
+}
+
 
 #endif // __STRMANIP_H__

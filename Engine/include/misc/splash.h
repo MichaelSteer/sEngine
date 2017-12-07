@@ -12,14 +12,17 @@
 #include <string>
 #include "misc/wizzard.h"
 
-#define __VERSION__MAJOR__ 0
-#define __VERSION__MINOR__ 0
+#define __VERSION__MAJOR__ 0					// Game Major Version
+#define __VERSION__MINOR__ 0					// Game Minor Version
+#define __APPLICATION__NAME__ __N_A_M_E__		// Application Name
+#define __APPLICATION__DATE__ __DATE__			// Application build date
+#define __AUTHOR__FIRST__NAME__ __FS_N_A_M_E	// Author First Name
+#define __AUTHOR__LAST__NAME__  __FS_L_A_S_T	// Author Last Name
 
-#define __APPLICATION__NAME__ __N_A_M_E__
-#define __APPLICATION__DATE__ __DATE__
-#define __AUTHOR__FIRST__NAME__ __FS_N_A_M_E
-#define __AUTHOR__LAST__NAME__  __FS_L_A_S_T
 
+/*
+	String and datatype declarations of the above info
+*/
 inline std::string	                      __version__()	 { return std::string(__VERSION__MAJOR__) 
 														 + " " 
 														 + std::string(__VERSION__MINOR__); }
@@ -39,6 +42,9 @@ inline std::string	             getApplicationAuthor()	 { return __author__();  
 inline std::string	    getApplicationAuthorFirstName()	 { return __AUTHOR__FIRST__NAME__; }
 inline std::string	     getApplicationAuthorLastName()  { return __AUTHOR__LAST__NAME__; }
 
+/*
+	Splash screen for console
+*/
 void splash();
 
 #endif // __SPLASH__H__

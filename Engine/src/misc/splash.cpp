@@ -17,9 +17,18 @@ using std::endl;
 	Splash screen
 */
 void splash() {
-	cout << "          sEngine   " << endl;
-	cout << "              App : " << getApplicationName() << endl;
-	cout << "           Author : " << getApplicationAuthor() << endl;
-	cout << "          Version : " << getVersion() << endl;
-	cout << "             Date : " << getApplicaitonCompilationDate() << endl;
+	cout << "      ______             _             " << endl;
+	cout << "     |  ____|           (_)            " << endl;
+	cout << "  ___| |__   _ __   __ _ _ _ __   ___ 	" << endl;
+	cout << " / __|  __| | '_ \\/  _` | | '_  \\/ _ \\	" << endl;
+	cout << " \\__ \\ |____| | | | (_| | | | | |  __/	" << endl;
+	cout << " |___/______|_| |_|\\__, |_|_| |_|\\___|	" << endl;
+	cout << "                    __/ |             	" << endl;
+	cout << "                   |___/               " << endl;
+
+	cout << "         App : " << getApplicationName() << endl;
+	cout << "      Author : " << getApplicationAuthor() << endl;
+	cout << "     Version : " << __version__major__() << "." << __version__minor__() << endl;
+	cout << "        Date : " << getApplicaitonCompilationDate() << endl;
+	cout << " Github Hash : " << endl;
 }

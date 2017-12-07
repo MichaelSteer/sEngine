@@ -21,8 +21,6 @@ Arg::~Arg() {}
 
 // Call an argument function
 bool Arg::call(std::string param) {
-	std::cout << "DONT RUN" << std::endl;
-	std::cout << "CALLING FUNCTION: " << arg << std::endl;
 	if (param=="" && hasDefault && needsParam) return func(def);
 	else if (!needsParam) return func("");
 	else {
@@ -60,23 +58,18 @@ bool ArgParser::call(std::string arg, std::string param) {
 // Parse arguments
 // something dies in here. FIND it
 bool ArgParser::parse() {
-	log << "PARSING" << std::endl;
-	log << "argc " << argc << std::endl;
 	int i = 1;
 	while (i < argc) {
 		if (argv[i][0] == '-') { // function
-			log << "FOUND FUNCTION " << argv[i] << std::endl;
 			if (i + 1 < argc) { // still one more item
 				if (argv[i + 1][0] != '-') {
 					funcs.push_back(std::tuple<std::string, std::string>(std::string(argv[i]), argv[i + 1]));
 					i += 2;
-					log << "SHOULD BE DONE" << std::endl;
 				}
 				else {
 					funcs.push_back(std::tuple<std::string, std::string>(std::string(argv[i]), ""));
 					funcs.push_back(std::tuple<std::string, std::string>(std::string(argv[i+1]), ""));
 					i += 1;
-					log << "SHOULD BE DONE" << std::endl;
 				}
 			}
 			else {

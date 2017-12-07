@@ -6,6 +6,9 @@
 	Memory class for RAM Usage
 */
 
+#ifndef __MEMORY_H__
+#define __MEMORY_H__
+
 class Memory {
 private:
 	unsigned long long TotalPhysical;
@@ -29,6 +32,9 @@ public:
 
 	unsigned long long getVirtual();
 	unsigned long long getUsedVirtual();
+	unsigned long long getProcessVirtual();
 	float			   getVirtualUsagePercentage();
 	float			   getVirtualProcessPercentage();
-};																																															    
+};				
+
+#endif // __MEMORY_H__
