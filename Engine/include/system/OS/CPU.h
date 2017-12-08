@@ -27,6 +27,8 @@
 #endif
 
 #include <string>
+
+// CPU Class structure
 class CPU {
 private:
 
@@ -47,12 +49,10 @@ private:
 #endif
 public:
 	CPU();
-
 	void poll();
 
 	double getTotalUsage();
 	double getProcessUsage();
-	//std::string getCPUName();
 	unsigned short getNumberOfCores();
 };
 

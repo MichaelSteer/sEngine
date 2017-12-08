@@ -1,0 +1,16 @@
+Running todo list for this application:
+
+
+- need to add unix support for a lot of things 
+	(hard to do without a computer running unix
+	 outside of a vm)
+- proper github branching instead of just a master
+- build numbering and versioning
+- pre-build script
+- makefile for unix
+- cmake integration as this project is going to get
+  gigantic
+- finish file I/O for unix hardware managment stuff
+- implement and test settingManager class
+
+- get a window up and running

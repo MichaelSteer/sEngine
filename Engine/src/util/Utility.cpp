@@ -9,15 +9,8 @@
 
 #include "util/Utility.h"
 
-// Print the current application version to screen
-bool printVersion(std::string _) {
-	std::cout << "Engine v" << VERSION_MAJOR << "." << VERSION_MINOR << std::endl;
-	return true;
-}
-
 // Constructor
 Utility::Utility() {}
-
 
 // Parameterized Constructor
 Utility::Utility(UtilitySettings s)

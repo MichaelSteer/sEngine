@@ -87,7 +87,7 @@ std::string HardwareManager::basicProcessInfo() {
 	std::stringstream out;
 
 	out.precision(3);
-	out << "Cores (" << getNCores() << ") Usage: "<< getProcessCPUUsage() << "% " << "(Total: "
+	out << "Cores (" << getNCores() << ") Core Usage: "<< getProcessCPUUsage() << "\% " << "(Total: "
 		<< getCPUUsage() << "%)" << endl;
 
 	// POS FUCKING SPACER FUNC THAT WONT COMPILE

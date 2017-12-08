@@ -8,12 +8,12 @@
 
 
 #include "system\OS\CPU.h"
-
+#include <iostream>
 #ifdef _WIN32
 #include <Pdh.h>
 CPU::CPU() {
 	PdhOpenQuery(NULL, NULL, &cpuQuery);
-	PdhAddEnglishCounter(cpuQuery, (LPCSTR)"\\Processor(_Total\\% Processor Time", NULL, &cpuTotal);
+	PdhAddEnglishCounter(cpuQuery, "\\Processor(_Total)\\% Processor Time", NULL, &cpuTotal);
 	PdhCollectQueryData(cpuQuery);
 
 	SYSTEM_INFO sysInfo;
@@ -39,6 +39,7 @@ void CPU::poll() {
 	PdhCollectQueryData(cpuQuery);
 	PdhGetFormattedCounterValue(cpuTotal, PDH_FMT_DOUBLE, NULL, &counter);
 
+	
 	totalUsage =  counter.doubleValue;
 
 	// Process
@@ -53,15 +54,15 @@ void CPU::poll() {
 	memcpy(&sys, &fsys, sizeof(FILETIME));
 	memcpy(&user, &fuser, sizeof(FILETIME));
 
-	percent = (double)(sys.QuadPart - lastSys.QuadPart) + (user.QuadPart - lastUser.QuadPart);
-	percent /= now.QuadPart - last.QuadPart;
-	percent /= nProcessors;
+	percent = (double)((sys.QuadPart - lastSys.QuadPart) + (user.QuadPart - lastUser.QuadPart));
+	percent /= (double)(now.QuadPart - last.QuadPart);
+	percent /= (double)nProcessors;
 
 	last = now;
 	lastUser = user;
 	lastSys = sys;
 
-	processUsage = percent * 100;
+	processUsage = percent * 100.0f;
 }
 
 #else

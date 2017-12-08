@@ -12,6 +12,9 @@
 
 #include "ArgParse.h"
 
+/* Argument Factory. This class statically loads arguments, if static loading is needed
+	TODO: Get rid of this and make settings dynamic
+*/
 class ArgFactory {
 public:
 	ArgFactory(ArgParser &parser);

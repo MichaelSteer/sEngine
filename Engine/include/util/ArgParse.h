@@ -18,9 +18,11 @@
 class ArgFactory;
 class ArgParser;
 
+
+// Function pointer wrapper
 typedef std::function<bool(std::string)> callable;
 
-// Arg class
+// Argument class
 class Arg {
 	friend class ArgParser;
 public:
@@ -44,6 +46,7 @@ private:
 	std::function<bool(std::string)> func;
 };
 
+// Argument Parsing class
 class ArgParser : public Utility {
 	friend class ArgFactory;
 public:

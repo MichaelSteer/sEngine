@@ -10,7 +10,7 @@
 #define __SETTING_MANAGER_H__
 
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <tuple>
 #include <string>
 #include <ostream>
@@ -19,7 +19,7 @@
 #include "util\Utility.h"
 
 typedef std::tuple<std::string, std::string> setting;
-typedef std::map<std::string, std::string>::iterator setting_iter;
+typedef std::unordered_map<std::string, std::string>::iterator setting_iter;
 
 using std::endl;
 
@@ -29,7 +29,7 @@ class InvalidSettingTypeException : public std::invalid_argument {
 
 class SettingManager : public Utility {
 private:
-	std::map<std::string, std::string> settings;
+	std::unordered_map<std::string, std::string> settings;
 	std::string path;
 
 	std::string getSecond(const std::string setting);

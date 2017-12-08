@@ -12,8 +12,8 @@
 #include <ostream>
 #include "../util/Utility.h"
 
-class Timer;
-
+/*	Chrono based timer class. 
+	The user is able to pick the resolution	*/
 class Timer : public Utility {
 	typedef std::chrono::high_resolution_clock clock;
 	typedef std::chrono::high_resolution_clock::time_point time;

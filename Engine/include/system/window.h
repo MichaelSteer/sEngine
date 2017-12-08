@@ -23,6 +23,8 @@
 
 using std::endl;
 
+/* Window class responsible for creating the main openGL rendering
+   context that everything is displayed in */
 class Window : public Utility {
 private:
 	unsigned int width, height;

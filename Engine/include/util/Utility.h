@@ -13,18 +13,16 @@
 #ifndef __UTILITY_H__
 #define __UTILITY_H__
 
-#define VERSION_MAJOR 0
-#define VERSION_MINOR 1
 #include "Logger.h"
 
-bool printVersion(std::string _);
-
+// UtilitySetting structure
 struct UtilitySettings {
 	LoggerLevels l_LoggerLevels;
 	bool l_toFile;
 	bool l_toConsole;
 };
 
+// Utility Structure
 class Utility : virtual public Logger {
 	friend class Singleton<Utility>;
 public:

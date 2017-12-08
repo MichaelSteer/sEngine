@@ -15,12 +15,11 @@ public:
 	DummyState();
 	~DummyState();
 
-	void init() override;
-	void end() override;
-
-	void update() override;
+	void init()    override;
+	void end()     override;
+	void update()  override;
 	void process() override;
-	void post() override;
+	void post()    override;
 };
 
 #endif // DUMMYSTATE_H

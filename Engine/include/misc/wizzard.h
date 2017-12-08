@@ -15,4 +15,4 @@
 
 #define __GIT_HASH__ 0				// Branch github hash
 #define __BUILD_NUMBER__			// Project build number
-#endif
+#endif // __WIZZARD_H__

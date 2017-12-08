@@ -22,12 +22,15 @@
 #include <mutex>
 #include "Singleton.h"
 
+
+// Logger out level warning system
 enum LoggerLevels : unsigned short {
 	LEVEL_INFO,
 	LEVEL_WARNING, 
 	LEVEL_ERROR
 };
 
+// Multithreading safe Log Buffer class
 class LoggerBuffer : public std::stringbuf {
 private:
 	std::string m_marker;
@@ -40,6 +43,8 @@ public:
 	std::string getTimeString();
 };
 
+/* Base logger class. Only one logger can exist. This class
+   wraps this fact */
 class __Logger : public std::ostream {
 	friend class Singleton<__Logger>;
 public:

@@ -8,9 +8,12 @@
 
 #ifndef __WINAPI_H__
 #define __WINAPI_H__
+
 #include <windows.h>
 #include <cstdio>
 
+/* Produce a console for the windows version
+   of this application							*/
 inline void InitConsole() {
 	AllocConsole();
 	freopen("CONOUT$", "w", stdout);

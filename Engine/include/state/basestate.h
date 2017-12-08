@@ -17,7 +17,6 @@ public:
 
 	virtual void init();
 	virtual void end();
-
 	virtual void update();
 	virtual void process();
 	virtual void post();

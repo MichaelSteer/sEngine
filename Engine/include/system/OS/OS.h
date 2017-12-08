@@ -13,13 +13,11 @@
 
 #include <string>
 
-
 std::string getMemUsage();
-
 std::string getCpuUsgae();
-
 std::string getWindowsOSVersion();
 
+// Return the OS being used based on PreProcesssor calls
 inline std::string getOsDistro() {
 	#ifdef _WIN32
 		return "Windows 32-bit";

@@ -12,11 +12,12 @@
 #define __HARDWARE_MANAGER_H__
 
 #include <string>
-using std::endl;
-
 #include "system\OS\CPU.h"
 #include "system\OS\Memory.h"
 #include "util\Utility.h"
+
+using std::endl;
+
 class HardwareManager : public Memory, public CPU, public Utility {
 public:
 
@@ -24,30 +25,33 @@ public:
 
 	HardwareManager();
 
+	// Output calls
 	std::string getHardwareInfo();
 	std::string getPerformanceInfo();
+	std::string basicProcessInfo();
 
+	void print();
+
+	// RAM Calls
 	unsigned long long getTotalRAM();	
 	unsigned long long getUsedRAM();
 	unsigned long long getProcessRAM();
 	double getUsedRAMPercentage();
 	double getProcessRAMPercentage();
 
+	// Page File Calls
 	unsigned long long getTotalPageFile();
 	unsigned long long getUsedPageFile();
 	unsigned long long getProcessPageFile();
 	double getUsedPageFilePercentage();
 	double getProcessPageFilePercentage();
 
+	// CPU Calls
 	double getCPUUsage();
 	double getProcessCPUUsage();	 
-
 	unsigned short getNCores();
 
-	std::string basicProcessInfo();
-	// std::string fullProcessInfo();
-	void print();
-
+	// Output Operator
 	template<typename T, typename Traits>
 	friend std::basic_ostream<T, Traits> &operator<<
 		(std::basic_ostream<T, Traits> &out, const HardwareManager &hwm) {

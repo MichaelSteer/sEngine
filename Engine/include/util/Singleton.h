@@ -8,6 +8,8 @@
 #define __SINGLETON_H__
 
 
+/* Singleton Class. Garantees a single instance
+   of a struct or a class */
 template<class T, typename... Args>
 class Singleton {
 public:

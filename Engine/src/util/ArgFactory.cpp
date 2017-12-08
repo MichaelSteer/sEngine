@@ -13,9 +13,6 @@
 // Parse arguments
 ArgFactory::ArgFactory(ArgParser &parser)
 	: parser(parser) {
-
-	// REPLACE WITH ARGLOADER FILE CLASS THING
-	addArg("-version", "Display the current version to the screen", false, false, "", printVersion);
 }
 
 

@@ -45,7 +45,6 @@ bool Application::init(HINSTANCE hInstance) {
 	hardwareManager = new HardwareManager();
 	window = new Window(hInstance, 1000, 1000, "test");
 	
-
 	std::unique_ptr<DummyState> s;
 
 	states.push(std::make_unique<DummyState>());
@@ -58,6 +57,8 @@ bool Application::init(HINSTANCE hInstance) {
 }
 
 bool Application::systemEvents() {
+#if defined(_WIN32) || defined(_WIN64)
+	// Windows events
 	if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 		if (msg.message == WM_QUIT) {
 			return true;
@@ -68,6 +69,9 @@ bool Application::systemEvents() {
 		}
 	}
 	return false;
+#elif
+	// Unix Events
+#endif
 }
 // start the application
 bool Application::start() {
@@ -83,13 +87,8 @@ bool Application::loop() {
 	if (incrementTimer.getElapsedTime() > 1000) {
 		hardwareManager->poll();
 		incrementTimer.reset();
-		hardSleep(10); // REMOVE once something computational is
+		hardSleep(30); // REMOVE once something computational is
 					   // being done
-
-
-					   // SLEEP for est time
-					   // SLEEP FUNC ASDFASDFASDFASDFASF
-					   // RESUME
 
 		log << "FPS: "
 			<< frameTimer.getFrequency()
