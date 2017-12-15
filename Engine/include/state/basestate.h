@@ -17,9 +17,9 @@ public:
 
 	virtual void init();
 	virtual void end();
-	virtual void update();
-	virtual void process();
-	virtual void post();
+	virtual void events();
+	virtual void logic();
+	virtual void render();
 };
 
 #endif // BASESTATE_H

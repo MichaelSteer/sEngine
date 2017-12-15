@@ -43,7 +43,7 @@ bool Application::init(HINSTANCE hInstance) {
 	AppRunning = true;
 
 	hardwareManager = new HardwareManager();
-	window = new Window(hInstance, 1000, 1000, "test");
+	windowManager = new Window(hInstance, 1000, 1000, "test");
 	
 	std::unique_ptr<DummyState> s;
 
@@ -52,7 +52,6 @@ bool Application::init(HINSTANCE hInstance) {
 	incrementTimer.start();
 	frameCounter = 0;
 	FramesPerSecond = 60.0f;
-	frameTimer.start();
 	return true;
 }
 
@@ -73,6 +72,16 @@ bool Application::systemEvents() {
 	// Unix Events
 #endif
 }
+
+void Application::statistics() {
+	hardwareManager->poll();
+	hardwareManager->print();
+	incrementTimer.reset();
+	log << "FPS: "
+		<< frameCounter
+		<< endl;
+}
+
 // start the application
 bool Application::start() {
 	while (loop()) {
@@ -82,20 +91,10 @@ bool Application::start() {
 
 bool Application::loop() {
 
-	// Timing and resource analysis
-	frameTimer.reset();
+	// Timing and resource analysis once per second
 	if (incrementTimer.getElapsedTime() > 1000) {
-		hardwareManager->poll();
-		incrementTimer.reset();
-		hardSleep(30); // REMOVE once something computational is
-					   // being done
-
-		log << "FPS: "
-			<< frameTimer.getFrequency()
-			<< endl;
-
-		hardwareManager->print();
-		frameTimer.reset();
+		statistics();
+		frameCounter = 0;
 	}
 
 	// Events
@@ -104,13 +103,16 @@ bool Application::loop() {
 	}
 
 	// State events
+	states.top()->events();
 
 	// State Logic
-
+	states.top()->logic();
+	
 	// State render
+	states.top()->render();
 
 	// Post logic
-
+	frameCounter++;
 	return true;
 
 }
@@ -124,15 +126,16 @@ bool Application::run() {
 
 // pause the application
 bool Application::hold() {
-	log << "holding..." << endl;
-	bool dummy;
-	cin >> dummy;
+	log << "Exit prompt requested." << endl;
 	return true;
 }
 
 // exit the application
 
 int Application::exit() {
+	states.top()->end();
+	windowManager->destroyWindow();
+	system("PAUSE");
 	return 0;
 }
 

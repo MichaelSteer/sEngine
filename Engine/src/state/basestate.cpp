@@ -34,10 +34,10 @@ void State::init() {}
 void State::end() {}
 
 // update
-void State::update() {}
+void State::events() {}
 
 // process state
-void State::process() {}
+void State::logic() {}
 
-// post processing
-void State::post() {}
+// Render state
+void State::render() {}

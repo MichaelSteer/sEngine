@@ -31,14 +31,14 @@ void DummyState::end() {
 }
 
 // update
-void DummyState::update() {
+void DummyState::logic() {
 	log << "Updating DummyState" << endl;
 }
 
-void DummyState::process() {
+void DummyState::events() {
 	log << "Processing content in DummyState" << endl;
 }
 
-void DummyState::post() {
-	log << "DummyState Post Processing" << endl;
+void DummyState::render() {
+	log << "rendering content in DummyState" << endl;
 }

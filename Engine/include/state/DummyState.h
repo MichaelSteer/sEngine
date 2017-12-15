@@ -17,9 +17,9 @@ public:
 
 	void init()    override;
 	void end()     override;
-	void update()  override;
-	void process() override;
-	void post()    override;
+	void events()  override;
+	void logic()   override;
+	void render()  override;
 };
 
 #endif // DUMMYSTATE_H

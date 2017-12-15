@@ -27,6 +27,7 @@ public:
 	bool parseArgs(char argc, char**argv);
 	bool init(HINSTANCE hInstance);
 	bool systemEvents();
+	void statistics();
 	bool start();
 	bool loop();
 	bool run();
@@ -37,12 +38,14 @@ private:
 	MSG msg;
 	HardwareManager *hardwareManager;
 	std::stack<std::unique_ptr<State>> states;
-	Timer frameTimer, incrementTimer;
+	Timer incrementTimer;
+
+
 	bool AppRunning;
-	unsigned short frameCounter;
+	unsigned int frameCounter;
 	float FramesPerSecond;
 
-	Window *window;
+	Window *windowManager;
 };
 
 #endif // BASESTATE_H

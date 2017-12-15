@@ -1,0 +1,11 @@
+# settings.dat
+# michael steer
+# settings file for the game engine
+
+iStatOutputFrequency = 5
+
+# OpenGL stuff
+iOpenGLMajorVersion = 4
+iOpenGLMinorVersion = 2
+iColorBits = 32
+iDepthBits = 32

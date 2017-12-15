@@ -35,7 +35,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	app.init(hInstance);
 	app.run();
-
 	app.hold();
 	return app.exit();
 	
